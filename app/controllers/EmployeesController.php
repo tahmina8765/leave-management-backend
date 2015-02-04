@@ -32,7 +32,15 @@ class EmployeesController extends \BaseController {
      * @return Response
      */
     public function store() {
-        //
+        $data = Input::all();
+
+        $validator = Validator::make($data, Employee::$rules);
+
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+
+        Employee::create($data);
     }
 
     /**
