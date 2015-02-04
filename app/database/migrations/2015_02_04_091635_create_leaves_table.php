@@ -14,9 +14,10 @@ class CreateLeavesTable extends Migration {
         Schema::dropIfExists('leaves');
         Schema::create('leaves', function(Blueprint $table) {
             $table->increments('id');
-            $table->text('employee_id');
+            $table->integer('employee_id');
             $table->date('leave_date');
             $table->text('reason');
+            //$table->foreign('employee_id')->references('id')->on('employees');
             $table->softDeletes();
             $table->timestamps();
         });
